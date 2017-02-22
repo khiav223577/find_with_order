@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["khiav reoy"]
   spec.email         = ["mrtmrt15xn@yahoo.com.tw"]
 
-  spec.summary       = %q{}
-  spec.description   = %q{}
+  spec.summary       = %q{find and preserve the order}
+  spec.description   = %q{find and preserve the order}
   spec.homepage      = "https://github.com/khiav223577/find_with_order"
   spec.license       = "MIT"
 
