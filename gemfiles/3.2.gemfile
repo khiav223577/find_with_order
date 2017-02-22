@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem "activerecord", "~> 3.2"
 
 group :test do
+  gem 'mysql2' , '0.3.21'
   gem "simplecov"
   gem "codeclimate-test-reporter", "~> 1.0.0"
 end
