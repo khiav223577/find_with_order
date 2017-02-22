@@ -26,6 +26,11 @@ Or install it yourself as:
 
 ## Usage
 
+### Find records in the same order of input IDs
+```rb
+User.find_with_order([3, 1, 5]).map(&:id)
+# => [3, 1, 5] 
+```
 
 ## Development
 
