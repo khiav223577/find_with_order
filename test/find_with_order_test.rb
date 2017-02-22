@@ -8,10 +8,15 @@ class FindWithOrderTest < Minitest::Test
     refute_nil ::FindWithOrder::VERSION
   end
 
-  def test_basic_find_with_order
+  def test_find_id_with_order
     order = [2, 1, 3]
     order_map = order.each_with_index.to_h
     expected = User.where(:id => order).to_a.sort_by{|user| order_map[user.id] }
     assert_equal expected, User.find_with_order(order)
+  end
+
+  def test_find_empty
+    expected = []
+    assert_equal expected, User.find_with_order([])
   end
 end
