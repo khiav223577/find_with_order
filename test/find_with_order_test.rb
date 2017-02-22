@@ -22,7 +22,7 @@ class FindWithOrderTest < Minitest::Test
   end
 
   def test_none
-    assert_equal [], User.none.to_a
+    assert_equal [], User.none.find_with_order([1, 2, 3]).to_a
   end
 
   def test_find_empty
