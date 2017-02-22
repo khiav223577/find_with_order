@@ -7,7 +7,7 @@ require 'find_with_order'
 require 'minitest/autorun'
 
 ActiveRecord::Base.establish_connection(
-  "adapter"  => "sqlite3",
-  "database" => ":memory:"
+  "adapter"  => "mysql2",
+  "database" => "test"
 )
 require 'seeds'
