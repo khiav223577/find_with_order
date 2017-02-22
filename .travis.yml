@@ -8,6 +8,8 @@ before_install:
   - gem install bundler
   - gem update --system
   - gem --version
+before_script:
+  - mysql -u root -e 'CREATE DATABASE test;'
 gemfile:
   - gemfiles/3.2.gemfile
   - gemfiles/4.2.gemfile
