@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["khiav reoy"]
   spec.email         = ["mrtmrt15xn@yahoo.com.tw"]
 
-  spec.summary       = %q{Find records in the same order of input IDs.}
-  spec.description   = %q{Find records in the same order of input IDs. Supports Rails 3+.}
+  spec.summary       = %q{Find records in the same order of input array.}
+  spec.description   = %q{Find records in the same order of input array. Supports Rails 3+.}
   spec.homepage      = "https://github.com/khiav223577/find_with_order"
   spec.license       = "MIT"
 
