@@ -6,7 +6,7 @@
 
 # FindWithOrder
 
-
+Find records in the same order of input array.
 
 ## Installation
 
