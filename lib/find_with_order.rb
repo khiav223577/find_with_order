@@ -3,9 +3,14 @@ require 'active_record'
 
 class << ActiveRecord::Base
   def find_with_order(ids)
+    return none if ids.blank?
     ids = ids.uniq
-    return none if ids.empty?
-    where(id: ids).order("field(id, #{ids.join(',')})")
+    return where(id: ids).order("field(id, #{ids.join(',')})").to_a
+  end
+  def where_with_order(column, ids)
+    return none if ids.blank?
+    ids = ids.uniq
+    return where(column => ids).order("field(#{column}, #{ids.map(&:inspect).join(',')})")
   end
 end
 unless ActiveRecord::Base.respond_to?(:none) # extend only if not implement yet

@@ -28,8 +28,19 @@ Or install it yourself as:
 
 ### Find records in the same order of input IDs
 ```rb
+User.find([3, 1, 5]).map(&:id)
+# => [1, 3, 5] 
+
 User.find_with_order([3, 1, 5]).map(&:id)
 # => [3, 1, 5] 
+```
+### Support order other columns
+```rb
+User.where(name: %w(Pearl John Kathenrie)).pluck(:name)
+# => ['John', 'Pearl', 'Kathenrie']
+
+User.where_with_order(:name, %w(Pearl John Kathenrie)).pluck(:name)
+# => ['Pearl', 'John', 'Kathenrie']
 ```
 
 ## Development
