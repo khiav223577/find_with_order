@@ -35,11 +35,15 @@ class FindWithOrderTest < Minitest::Test
   end
 
   def test_none
-    assert_equal [], User.none.find_with_order([1, 2, 3]).to_a
+    assert_equal [], User.none.find_with_order([1, 2, 3])
   end
 
   def test_find_empty
-    expected = []
-    assert_equal expected, User.find_with_order([])
+    assert_equal [], User.find_with_order([])
   end
+
+  def test_where_empty
+    assert_equal [], User.where_with_order(:name, []).to_a
+  end
+
 end
