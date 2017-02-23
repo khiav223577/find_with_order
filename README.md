@@ -43,6 +43,16 @@ User.where_with_order(:name, %w(Pearl John Kathenrie)).pluck(:name)
 # => ['Pearl', 'John', 'Kathenrie']
 ```
 
+## Benchmark
+
+```
+                                               user     system      total        real
+Find with order                            0.030000   0.000000   0.030000 (  0.031621)
+Find then sort by index                    1.410000   0.010000   1.420000 (  1.478526)
+Find then sort by hash mapping             1.130000   0.020000   1.150000 (  1.198779)
+```
+[test script](https://github.com/khiav223577/find_with_order/issues/4)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
