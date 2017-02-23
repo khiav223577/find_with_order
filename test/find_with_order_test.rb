@@ -40,10 +40,21 @@ class FindWithOrderTest < Minitest::Test
 
   def test_find_empty
     assert_equal [], User.find_with_order([])
+    assert_equal [], User.find_with_order(nil)
   end
 
   def test_where_empty
     assert_equal [], User.where_with_order(:name, []).to_a
+    assert_equal [], User.where_with_order(:name, nil).to_a
   end
 
+  def test_association_find_with_order
+    expected_order = ["John's post2", "John's post1", "John's post3"]
+    assert_equal expected_order, Post.where_with_order(:title, expected_order).pluck(:title)
+    assert_equal expected_order, User.where(:name => 'John').first.posts.where_with_order(:title, expected_order).pluck(:title)
+    assert_equal [], User.where(:name => 'Pearl').first.posts.where_with_order(:title, expected_order).pluck(:title)
+  end
 end
+
+
+
