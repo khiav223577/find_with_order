@@ -5,7 +5,7 @@ class << ActiveRecord::Base
   def find_with_order(ids)
     return none if ids.blank?
     ids = ids.uniq
-    return where(id: ids).order("field(id, #{ids.join(',')})").to_a
+    return where(id: ids).order("field(#{table_name}.id, #{ids.join(',')})").to_a
   end
   def where_with_order(column, ids)
     return none if ids.blank?

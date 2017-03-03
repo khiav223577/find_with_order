@@ -55,9 +55,10 @@ class FindWithOrderTest < Minitest::Test
     assert_equal [], User.where(:name => 'Pearl').first.posts.where_with_order(:title, expected_order).pluck(:title)
   end
 
-  def test_ambiguous_id
+  def test_ambiguous_id_in_join
     order = [2, 1, 3]
-    assert_equal order, User.joins(:posts).find_with_order(order).map(&:id)
+    assert_equal order, User.joins(:posts).uniq.find_with_order(order).map(&:id)
+    assert_equal order, User.joins(:posts).uniq.where_with_order(:'users.id', order).pluck(:id)
   end
 end
 
