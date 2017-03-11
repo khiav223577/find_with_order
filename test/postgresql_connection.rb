@@ -2,4 +2,4 @@ ActiveRecord::Base.establish_connection(
   "adapter"  => "postgresql",
   "database" => "travis_ci_test",
 )
-load 'seeds.rb'
+require 'seeds'
