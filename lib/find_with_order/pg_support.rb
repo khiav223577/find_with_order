@@ -1,6 +1,6 @@
 module FindWithOrder
   VERSION = "1.0.1"
-  module PostgreSqlSupport
+  module PGSupport
     def self.find_with_order(relation, ids)
       ids = ids.uniq
       return relation.where(id: ids).order("field(#{relation.table_name}.id, #{ids.join(',')})").to_a

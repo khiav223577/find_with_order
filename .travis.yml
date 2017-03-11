@@ -6,7 +6,7 @@ sudo: required
 dist: trusty
 env: 
   - DB=mysql
-  - DB=postgres
+  - DB=pg
 services:
   - postgresql
 before_install: 

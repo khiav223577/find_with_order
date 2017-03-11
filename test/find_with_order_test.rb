@@ -2,7 +2,7 @@ require 'test_helper'
 case ENV['DB']
 when 'mysql'
   require 'mysql2_connection'
-when 'postgres'
+when 'pg'
   require 'postgresql_connection'
 else
   raise "no database"
