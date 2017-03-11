@@ -1,8 +1,8 @@
 require 'test_helper'
-case 
-when defined?(Mysql2)
+case ENV['DB']
+when 'mysql'
   require 'mysql2_connection'
-when defined?(PG)
+when 'postgres'
   require 'postgresql_connection'
 else
   raise "no database"
