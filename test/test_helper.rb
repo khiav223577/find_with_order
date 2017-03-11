@@ -8,6 +8,6 @@ require 'minitest/autorun'
 
 ActiveRecord::Base.establish_connection(
   "adapter"  => "mysql2",
-  "database" => "test"
+  "database" => "travis_ci_test",
 )
 require 'seeds'

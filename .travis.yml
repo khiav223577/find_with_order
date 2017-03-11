@@ -4,12 +4,15 @@ rvm:
   - 2.3
 sudo: required
 dist: trusty
+services:
+  - postgresql
 before_install: 
   - gem install bundler
   - gem update --system
   - gem --version
 before_script:
-  - mysql -u root -e 'CREATE DATABASE test;'
+  - mysql -u root -e 'CREATE DATABASE travis_ci_test;'
+  - psql -c 'create database travis_ci_test;' -U postgres
 gemfile:
   - gemfiles/3.2.gemfile
   - gemfiles/4.2.gemfile
