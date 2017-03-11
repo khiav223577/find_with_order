@@ -1,5 +1,4 @@
 module FindWithOrder
-  VERSION = "1.0.1"
   module MysqlSupport
     def self.find_with_order(relation, ids)
       ids = ids.uniq
