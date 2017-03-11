@@ -4,6 +4,9 @@ rvm:
   - 2.3
 sudo: required
 dist: trusty
+env: 
+  - DB=mysql
+  - DB=postgres
 services:
   - postgresql
 before_install: 

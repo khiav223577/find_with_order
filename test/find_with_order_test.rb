@@ -1,6 +1,12 @@
 require 'test_helper'
-# require 'mysql2_connection'
-require 'postgresql_connection'
+case 
+when defined?(Mysql2)
+  require 'mysql2_connection'
+when defined?(PG)
+  require 'postgresql_connection'
+else
+  raise "no database"
+end
 
 class FindWithOrderTest < Minitest::Test
   def setup

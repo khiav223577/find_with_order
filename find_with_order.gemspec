@@ -33,5 +33,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", ">= 3"
   spec.add_dependency "mysql2", ">= 0.3"
+  spec.add_dependency "pg", "~> 0.18"
 
 end
