@@ -1,4 +1,6 @@
 require 'test_helper'
+# require 'mysql2_connection'
+require 'postgresql_connection'
 
 class FindWithOrderTest < Minitest::Test
   def setup
