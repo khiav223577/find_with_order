@@ -6,11 +6,13 @@ require 'active_record'
 class << ActiveRecord::Base
   def find_with_order(ids)
     return none if ids.blank?
+    ids = ids.uniq
     return FindWithOrder::PGSupport.find_with_order(self, ids) if defined?(PG)
     return FindWithOrder::MysqlSupport.find_with_order(self, ids)
   end
   def where_with_order(column, ids)
     return none if ids.blank?
+    ids = ids.uniq
     return FindWithOrder::PGSupport.where_with_order(self, column, ids) if defined?(PG)
     return FindWithOrder::MysqlSupport.where_with_order(self, column, ids)
   end

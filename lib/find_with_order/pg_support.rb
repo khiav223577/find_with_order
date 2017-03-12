@@ -1,14 +1,12 @@
 module FindWithOrder
   module PGSupport
     def self.find_with_order(relation, ids)
-      ids = ids.uniq
       # return relation.where(id: ids).order("array_position(ARRAY[#{ids.join(',')}], #{relation.table_name}.id)").to_a #array_position is only support in PG >= 9.5
       return relation.where(id: ids)
                      .joins("JOIN (SELECT id.val, row_number() over() FROM (VALUES(#{ids.join('),(')})) AS id(val)) AS id ON (#{relation.table_name}.id = id.val)")
                      .order('row_number')
     end
     def self.where_with_order(relation, column, ids)
-      ids = ids.uniq
       relation = relation.where(column => ids)
       case ids.first
       when Numeric
