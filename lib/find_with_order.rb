@@ -1,16 +1,20 @@
 require "find_with_order/version"
+require "find_with_order/mysql_support"
+require "find_with_order/pg_support"
 require 'active_record'
 
 class << ActiveRecord::Base
   def find_with_order(ids)
     return none if ids.blank?
     ids = ids.uniq
-    return where(id: ids).order("field(#{table_name}.id, #{ids.join(',')})").to_a
+    return FindWithOrder::PGSupport.find_with_order(self, ids) if defined?(PG)
+    return FindWithOrder::MysqlSupport.find_with_order(self, ids)
   end
   def where_with_order(column, ids)
     return none if ids.blank?
     ids = ids.uniq
-    return where(column => ids).order("field(#{column}, #{ids.map(&:inspect).join(',')})")
+    return FindWithOrder::PGSupport.where_with_order(self, column, ids) if defined?(PG)
+    return FindWithOrder::MysqlSupport.where_with_order(self, column, ids)
   end
 end
 unless ActiveRecord::Base.respond_to?(:none) # extend only if not implement yet

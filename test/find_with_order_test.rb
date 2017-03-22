@@ -1,4 +1,12 @@
 require 'test_helper'
+case ENV['DB']
+when 'mysql'
+  require 'mysql2_connection'
+when 'pg'
+  require 'postgresql_connection'
+else
+  raise "no database"
+end
 
 class FindWithOrderTest < Minitest::Test
   def setup
@@ -57,8 +65,8 @@ class FindWithOrderTest < Minitest::Test
 
   def test_ambiguous_id_in_join
     order = [2, 1, 3]
-    assert_equal order, User.joins(:posts).uniq.find_with_order(order).map(&:id)
-    assert_equal order, User.joins(:posts).uniq.where_with_order(:'users.id', order).pluck(:id)
+    assert_equal order, User.joins(:posts).find_with_order(order).map(&:id).uniq #postgresql doesn't support distinct + order
+    assert_equal order, User.joins(:posts).where_with_order(:'users.id', order).pluck(:id).uniq
   end
 end
 
