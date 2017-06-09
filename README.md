@@ -45,15 +45,24 @@ User.where_with_order(:name, %w(Pearl John Kathenrie)).pluck(:name)
 ```
 
 ## Benchmark
+### Compare with manually sorting in rails
 
 ```
                                        user     system      total        real
-order_as_specified                 0.110000   0.020000   0.130000 (  0.198647)
 Find with order                    0.050000   0.010000   0.060000 (  0.074975)
 Find then sort by index            2.520000   0.120000   2.640000 (  3.238615)
 Find then sort by hash mapping     1.410000   0.070000   1.480000 (  1.737176)
 ```
 [test script](https://github.com/khiav223577/find_with_order/issues/4)
+
+### Compare with order_as_specified
+```
+                                       user     system      total        real
+order_as_specified                 0.020000   0.000000   0.020000 (  0.703773)
+where_with_order                   0.020000   0.000000   0.020000 (  0.031723)
+```
+[test script](https://github.com/khiav223577/find_with_order/issues/4#issuecomment-307376453)
+
 
 ## Development
 
