@@ -48,9 +48,10 @@ User.where_with_order(:name, %w(Pearl John Kathenrie)).pluck(:name)
 
 ```
                                        user     system      total        real
-Find with order                    0.030000   0.000000   0.030000 (  0.033517)
-Find then sort by index            1.510000   0.030000   1.540000 (  1.706246)
-Find then sort by hash mapping     1.120000   0.010000   1.130000 (  1.192891)
+order_as_specified                 0.110000   0.020000   0.130000 (  0.198647)
+Find with order                    0.050000   0.010000   0.060000 (  0.074975)
+Find then sort by index            2.520000   0.120000   2.640000 (  3.238615)
+Find then sort by hash mapping     1.410000   0.070000   1.480000 (  1.737176)
 ```
 [test script](https://github.com/khiav223577/find_with_order/issues/4)
 
