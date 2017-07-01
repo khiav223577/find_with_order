@@ -8,20 +8,7 @@ module FindWithOrder::PGSupport
     end
 
     def where_with_order(relation, column, ids)
-      relation = relation.where(column => ids)
-      case ids.first
-      when Numeric
-        # return relation.order("array_position(ARRAY[#{ids.join(',')}], #{column})") #array_position is only support in PG >= 9.5
-        return relation.joins("JOIN (SELECT id.val, row_number() over() FROM (VALUES(#{ids.join('),(')})) AS id(val)) AS id ON (#{column} = id.val)")
-                       .order('row_number')
-      when String
-        ids.map!{|s| ActiveRecord::Base.connection.quote_string(s) }
-        # return relation.order("array_position(ARRAY['#{ids.join("','")}']::varchar[], #{column})") #array_position is only support in PG >= 9.5
-        return relation.joins("JOIN (SELECT id.val, row_number() over() FROM (VALUES('#{ids.join("'),('")}')) AS id(val)) AS id ON (#{column} = id.val)")
-                       .order('row_number')
-      else
-        raise "not support type: #{ids.first.class}"
-      end
+      with_order(relation.where(column => ids), column, ids)
     end
 
     def with_order(relation, column, ids)
