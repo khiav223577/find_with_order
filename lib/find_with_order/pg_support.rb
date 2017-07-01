@@ -12,6 +12,7 @@ module FindWithOrder::PGSupport
     end
 
     def with_order(relation, column, ids, null_first: false)
+      ids = ids.reverse if null_first
       case ids.first
       when Numeric
         values = ids.join('),(')
@@ -24,7 +25,7 @@ module FindWithOrder::PGSupport
         raise "not support type: #{ids.first.class}"
       end
       return relation.joins("LEFT JOIN (SELECT id.val, row_number() over() FROM (VALUES(#{values})) AS id(val)) AS id ON (#{column} = id.val)")
-                     .order('row_number')
+                     .order(null_first ? 'row_number DESC' : 'row_number')
     end
   end
 end
