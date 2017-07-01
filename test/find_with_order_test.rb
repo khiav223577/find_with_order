@@ -74,6 +74,15 @@ class FindWithOrderTest < Minitest::Test
     assert_equal [3, 1, 2], users.with_order(:id, [3, 1]).pluck(:id)
     assert_equal [2, 3, 1], users.with_order(:id, [3, 1], null_first: true).pluck(:id)
   end
+
+  def test_order_with_different_column
+    posts = Post.joins(:user).where(:'users.name' => 'John')
+    expected_order = ["John's post3", "John's post1", "John's post2"]
+    assert_equal expected_order, posts.with_order(:title, ["John's post3", "John's post1"]).pluck(:'posts.title')
+
+    expected_order = ["John's post2", "John's post3", "John's post1"]
+    assert_equal expected_order, posts.with_order(:title, ["John's post3", "John's post1"], null_first: true).pluck(:'posts.title')
+  end
 end
 
 
