@@ -35,6 +35,7 @@ User.find([3, 1, 5]).map(&:id)
 User.find_with_order([3, 1, 5]).map(&:id)
 # => [3, 1, 5] 
 ```
+
 ### Support order other columns
 ```rb
 User.where(name: %w(Pearl John Kathenrie)).pluck(:name)
@@ -43,6 +44,16 @@ User.where(name: %w(Pearl John Kathenrie)).pluck(:name)
 User.where_with_order(:name, %w(Pearl John Kathenrie)).pluck(:name)
 # => ['Pearl', 'John', 'Kathenrie']
 ```
+
+### Just order part of results
+```rb
+User.where(leader: true).with_order(:name, %w(Pearl John)).pluck(:name)
+# => ['Pearl', 'John', 'Kathenrie']
+
+User.where(leader: true).with_order(:name, %w(Pearl John), null_first: true).pluck(:name)
+# => ['Kathenrie', 'Pearl', 'John']
+```
+
 
 ## Benchmark
 ### Compare with manually sorting in rails
