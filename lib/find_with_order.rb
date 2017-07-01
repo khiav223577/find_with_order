@@ -23,8 +23,8 @@ class << ActiveRecord::Base
     return FindWithOrder.supporter.where_with_order(self, column, ids.uniq)
   end
 
-  def with_order(column, ids)
-    FindWithOrder.supporter.with_order(self, column, ids)
+  def with_order(column, ids, null_first: false)
+    FindWithOrder.supporter.with_order(self, column, ids, null_first: null_first)
   end
 end
 

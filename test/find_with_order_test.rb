@@ -71,6 +71,7 @@ class FindWithOrderTest < Minitest::Test
 
   def test_with_order
     assert_equal [3, 1, 2], User.where(id: [1, 2, 3]).with_order(:id, [3, 1]).pluck(:id)
+    assert_equal [2, 3, 1], User.where(id: [1, 2, 3]).with_order(:id, [3, 1], null_first: true).pluck(:id)
   end
 end
 

@@ -7,11 +7,12 @@ module FindWithOrder::MysqlSupport
     end
 
     def where_with_order(relation, column, ids)
-      with_order(relation.where(column => ids), column, ids)
+      with_order(relation.where(column => ids), column, ids, null_first: true)
     end
 
-    def with_order(relation, column, ids)
-      relation.order("field(#{column}, #{ids.map(&:inspect).join(',')})")
+    def with_order(relation, column, ids, null_first: false)
+      return relation.order("field(#{column}, #{ids.map(&:inspect).join(',')})") if null_first 
+      return relation.order("field(#{column}, #{ids.reverse.map(&:inspect).join(',')}) DESC")
     end
   end
 end
