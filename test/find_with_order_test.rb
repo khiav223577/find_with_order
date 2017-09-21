@@ -67,6 +67,7 @@ class FindWithOrderTest < Minitest::Test
     order = [2, 1, 3]
     assert_equal order, User.joins(:posts).find_with_order(order).map(&:id).uniq #postgresql doesn't support distinct + order
     assert_equal order, User.joins(:posts).where_with_order(:'users.id', order).pluck(:id).uniq
+    assert_equal order, User.joins(:posts).where_with_order(:id, order).pluck(:id).uniq
   end
 
   def test_with_order
