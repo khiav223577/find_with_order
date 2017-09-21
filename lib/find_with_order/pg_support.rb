@@ -12,6 +12,11 @@ module FindWithOrder::PGSupport
     end
 
     def with_order(relation, column, ids, null_first: false)
+      if column.is_a?(Symbol) and relation.column_names.include?(column.to_s)
+        column = "#{relation.connection.quote_table_name(relation.table_name)}.#{relation.connection.quote_column_name(column)}"
+      else
+        column = column.to_s
+      end
       ids = ids.reverse if null_first
       case ids.first
       when Numeric
