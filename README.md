@@ -27,30 +27,36 @@ Or install it yourself as:
 
 ## Usage
 
-### Find records in the same order of input IDs
+### Find records with the order of IDs: `find_with_order`
 ```rb
-User.find([3, 1, 5]).map(&:id)
+ids = [3, 1, 5]
+
+User.find(ids).map(&:id)
 # => [1, 3, 5] 
 
-User.find_with_order([3, 1, 5]).map(&:id)
+User.find_with_order(ids).map(&:id)
 # => [3, 1, 5] 
 ```
 
-### Support order other columns
+### Support order other columns: `where_with_order`
 ```rb
-User.where(name: %w(Pearl John Kathenrie)).pluck(:name)
+names = %w(Pearl John Kathenrie)
+
+User.where(name: names).pluck(:name)
 # => ['John', 'Pearl', 'Kathenrie']
 
-User.where_with_order(:name, %w(Pearl John Kathenrie)).pluck(:name)
+User.where_with_order(:name, names).pluck(:name)
 # => ['Pearl', 'John', 'Kathenrie']
 ```
 
-### Just order part of results
+### Support order part of results: `with_order`
 ```rb
-User.where(leader: true).with_order(:name, %w(Pearl John)).pluck(:name)
+names = %w(Pearl John)
+
+User.leader.with_order(:name, names).pluck(:name)
 # => ['Pearl', 'John', 'Kathenrie']
 
-User.where(leader: true).with_order(:name, %w(Pearl John), null_first: true).pluck(:name)
+User.leader.with_order(:name, names, null_first: true).pluck(:name)
 # => ['Kathenrie', 'Pearl', 'John']
 ```
 
