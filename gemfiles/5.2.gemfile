@@ -1,0 +1,15 @@
+source 'https://rubygems.org'
+
+gem "activerecord", "~> 5.2.0"
+
+group :test do
+  case ENV['DB']
+  when "mysql"    ; gem 'mysql2' , '0.5.1'
+  when "postgres" ; gem 'pg', '~> 0.18'
+  end
+  gem "simplecov"
+  gem "codeclimate-test-reporter", "~> 1.0.0"
+end
+
+gemspec :path => "../"
+
