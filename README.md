@@ -9,12 +9,14 @@
 
 Find records in the same order of input array.
 
+Forked from [khiav223577/find_with_order](https://github.com/khiav223577/find_with_order)
+
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'find_with_order'
+gem 'find_with_order', git: 'git://github.com/KRaikk/find_with_order.git'
 ```
 
 And then execute:
