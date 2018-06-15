@@ -4,7 +4,7 @@ module FindWithOrder::PGSupport
       # return relation.where(id: ids).order("array_position(ARRAY[#{ids.join(',')}], #{relation.table_name}.id)").to_a #array_position is only support in PG >= 9.5
       return relation.where(id: ids)
                      .joins("JOIN (SELECT id.val, row_number() over() FROM (VALUES(#{ids.join('),(')})) AS id(val)) AS id ON (#{relation.table_name}.id = id.val)")
-                     .order('row_number')
+                     .reorder('row_number')
     end
 
     def where_with_order(relation, column, ids)
@@ -30,7 +30,7 @@ module FindWithOrder::PGSupport
         raise "not support type: #{ids.first.class}"
       end
       return relation.joins("LEFT JOIN (SELECT id.val, row_number() over() FROM (VALUES(#{values})) AS id(val)) AS id ON (#{column} = id.val)")
-                     .order(null_first ? 'row_number DESC' : 'row_number')
+                     .reorder(null_first ? 'row_number DESC' : 'row_number')
     end
   end
 end
