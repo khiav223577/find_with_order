@@ -18,6 +18,7 @@ module FindWithOrder::PGSupport
         column = column.to_s
       end
       ids = ids.reverse if null_first
+      ids.reject!(&:blank?)
       case ids.first
       when Numeric
         values = ids.join('),(')
@@ -29,8 +30,7 @@ module FindWithOrder::PGSupport
       else
         raise "not support type: #{ids.first.class}"
       end
-      return relation.joins("LEFT JOIN (SELECT id.val, row_number() over() FROM (VALUES(#{values})) AS id(val)) AS id ON (#{column} = id.val)")
-                     .reorder(null_first ? 'row_number DESC' : 'row_number')
+      return relation.joins("LEFT JOIN (SELECT id.val, row_number() over() FROM (VALUES(#{values})) AS id(val)) AS id ON (#{column} = id.val)").reorder(null_first ? 'row_number DESC' : 'row_number')
     end
   end
 end
