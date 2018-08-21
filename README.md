@@ -38,7 +38,7 @@ User.find_with_order(ids).map(&:id)
 # => [3, 1, 5] 
 ```
 
-### Support order other columns: `where_with_order`
+### Support ordering by other columns: `where_with_order`
 ```rb
 names = %w(Pearl John Kathenrie)
 
@@ -49,7 +49,7 @@ User.where_with_order(:name, names).pluck(:name)
 # => ['Pearl', 'John', 'Kathenrie']
 ```
 
-### Support order part of results: `with_order`
+### Support ordering only part of results: `with_order`
 ```rb
 names = %w(Pearl John)
 
