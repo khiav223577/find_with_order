@@ -4,14 +4,14 @@ rvm:
   - 2.3
 sudo: required
 dist: trusty
-env: 
+env:
   - DB=mysql
   - DB=pg
 services:
   - postgresql
-before_install: 
+before_install:
+  - gem i rubygems-update -v '<3' && update_rubygems
   - gem install bundler
-  - gem update --system
   - gem --version
 before_script:
   - mysql -u root -e 'CREATE DATABASE travis_ci_test;'
