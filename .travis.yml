@@ -1,9 +1,11 @@
+sudo: false
+env:
+  global:
+    - CC_TEST_REPORTER_ID=6384ecacad280dc863595e6e369a43299e157c0e7588b636e025a1808a3f5581
 language: ruby
 rvm:
   - 2.2
   - 2.3
-sudo: required
-dist: trusty
 env:
   - DB=mysql
   - DB=pg
@@ -13,6 +15,9 @@ before_install:
   - gem i rubygems-update -v '<3' && update_rubygems
   - gem install bundler -v 1.17.3
   - gem --version
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 before_script:
   - mysql -u root -e 'CREATE DATABASE travis_ci_test;'
   - psql -c 'create database travis_ci_test;' -U postgres
@@ -22,9 +27,7 @@ gemfile:
   - gemfiles/5.0.gemfile
   - gemfiles/5.1.gemfile
   - gemfiles/5.2.gemfile
-addons:
-    code_climate:
-        repo_token: 6384ecacad280dc863595e6e369a43299e157c0e7588b636e025a1808a3f5581
-after_success:
-  - bundle exec codeclimate-test-reporter
-
+script:
+  - bundle exec rake test
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
