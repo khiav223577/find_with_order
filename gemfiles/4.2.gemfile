@@ -8,7 +8,6 @@ group :test do
   when "postgres" ; gem 'pg', '~> 0.18'
   end
   gem "simplecov"
-  gem "codeclimate-test-reporter", "~> 1.0.0"
 end
 
 gemspec :path => "../"
