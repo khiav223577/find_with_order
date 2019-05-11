@@ -2,6 +2,7 @@ require 'test_helper'
 
 class OrderUuidTest < Minitest::Test
   def setup
+    skip if ENV['DB'] != 'pg'
     @user1 = UuidUser.find_by(account: 'jimmy')
     @user2 = UuidUser.find_by(account: 'john')
     @user3 = UuidUser.find_by(account: 'peter')

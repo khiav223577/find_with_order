@@ -29,8 +29,10 @@ Post.create([
   {:title => "Kathenrie's post1", :user_id => users[2].id},
 ])
 
-UuidUser.create([
-  { account: 'jimmy' },
-  { account: 'john' },
-  { account: 'peter' },
-])
+if ENV['DB'] == 'pg'
+  UuidUser.create([
+    { account: 'jimmy' },
+    { account: 'john' },
+    { account: 'peter' },
+  ])
+end
