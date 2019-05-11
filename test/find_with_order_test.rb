@@ -1,14 +1,4 @@
 require 'test_helper'
-case ENV['DB']
-when 'mysql'
-  require 'lib/mysql2_connection'
-when 'pg'
-  require 'lib/postgresql_connection'
-else
-  raise "no database"
-end
-
-require 'lib/seeds'
 
 class FindWithOrderTest < Minitest::Test
   def setup
