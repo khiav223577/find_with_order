@@ -9,12 +9,9 @@ ActiveRecord::Schema.define do
     t.string :title
   end
 end
-class User < ActiveRecord::Base
-  has_many :posts
-end
-class Post < ActiveRecord::Base
-  belongs_to :user
-end
+
+ActiveSupport::Dependencies.autoload_paths << File.expand_path('../models/', __FILE__)
+
 users = User.create([
   {:name => 'John', :email => 'john@example.com'},
   {:name => 'Pearl', :email => 'pearl@example.com'},

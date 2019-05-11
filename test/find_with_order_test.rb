@@ -8,6 +8,8 @@ else
   raise "no database"
 end
 
+require 'lib/seeds'
+
 class FindWithOrderTest < Minitest::Test
   def setup
     

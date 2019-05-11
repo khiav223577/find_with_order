@@ -3,4 +3,3 @@ ActiveRecord::Base.establish_connection(
   "database" => "travis_ci_test",
   "username" => "root",
 )
-require 'seeds'
