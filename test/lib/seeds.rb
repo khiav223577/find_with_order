@@ -1,9 +1,11 @@
 ActiveRecord::Schema.define do
   self.verbose = false
+
   create_table :users, :force => true do |t|
     t.string :name
     t.string :email
   end
+
   create_table :posts, :force => true do |t|
     t.integer :user_id
     t.string :title
@@ -17,6 +19,7 @@ users = User.create([
   {:name => 'Pearl', :email => 'pearl@example.com'},
   {:name => 'Kathenrie', :email => 'kathenrie@example.com'},
 ])
+
 Post.create([
   {:title => "John's post1", :user_id => users[0].id},
   {:title => "John's post2", :user_id => users[0].id},
@@ -24,4 +27,10 @@ Post.create([
   {:title => "Pearl's post1", :user_id => users[1].id},
   {:title => "Pearl's post2", :user_id => users[1].id},
   {:title => "Kathenrie's post1", :user_id => users[2].id},
+])
+
+UuidUser.create([
+  { account: 'jimmy' },
+  { account: 'john' },
+  { account: 'peter' },
 ])
