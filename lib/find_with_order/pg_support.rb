@@ -46,7 +46,7 @@ module FindWithOrder::PGSupport
 
     def uuid?(relation, column)
       column_info = relation.columns_hash[column.to_s]
-      return false if column_info == nil
+      return false if !column_info
       return column_info.type == :uuid
     end
   end
