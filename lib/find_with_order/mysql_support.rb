@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FindWithOrder::MysqlSupport
   class << self
     def find_with_order(relation, ids)

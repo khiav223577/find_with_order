@@ -1,17 +1,9 @@
 require 'test_helper'
-case ENV['DB']
-when 'mysql'
-  require 'mysql2_connection'
-when 'pg'
-  require 'postgresql_connection'
-else
-  raise "no database"
-end
 
 class FindWithOrderTest < Minitest::Test
   def setup
-    
   end
+
   def test_that_it_has_a_version_number
     refute_nil ::FindWithOrder::VERSION
   end
@@ -85,6 +77,3 @@ class FindWithOrderTest < Minitest::Test
     assert_equal expected_order, posts.with_order(:title, ["John's post3", "John's post1"], null_first: true).pluck(:'posts.title')
   end
 end
-
-
-
