@@ -77,6 +77,3 @@ class FindWithOrderTest < Minitest::Test
     assert_equal expected_order, posts.with_order(:title, ["John's post3", "John's post1"], null_first: true).pluck(:'posts.title')
   end
 end
-
-
-
