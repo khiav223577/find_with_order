@@ -19,7 +19,9 @@ before_install:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 before_script:
+  - mysql -V
   - mysql -u root -e 'CREATE DATABASE travis_ci_test;'
+  - psql -c "SELECT version();"
   - psql -c 'create database travis_ci_test;' -U postgres
 gemfile:
   - gemfiles/3.2.gemfile
