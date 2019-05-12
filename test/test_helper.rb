@@ -12,4 +12,5 @@ when 'pg'    ; require 'lib/postgresql_connection'
 else         ; raise "no database"
 end
 
+require 'lib/patches'
 require 'lib/seeds'
