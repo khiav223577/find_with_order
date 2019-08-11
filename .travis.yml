@@ -1,19 +1,25 @@
 sudo: false
-env:
-  global:
-    - CC_TEST_REPORTER_ID=6384ecacad280dc863595e6e369a43299e157c0e7588b636e025a1808a3f5581
 language: ruby
 rvm:
   - 2.2
   - 2.3
-env:
-  - DB=mysql
-  - DB=pg
 services:
   - mysql
   - postgresql
 addons:
   postgresql: "9.4"
+env:
+  global:
+    - CC_TEST_REPORTER_ID=6384ecacad280dc863595e6e369a43299e157c0e7588b636e025a1808a3f5581
+  matrix:
+    - DB=mysql
+    - DB=pg
+gemfile:
+  - gemfiles/3.2.gemfile
+  - gemfiles/4.2.gemfile
+  - gemfiles/5.0.gemfile
+  - gemfiles/5.1.gemfile
+  - gemfiles/5.2.gemfile
 before_install:
   - gem i rubygems-update -v '<3' && update_rubygems
   - gem install bundler -v 1.17.3
@@ -26,12 +32,6 @@ before_script:
   - mysql -u root -e 'CREATE DATABASE travis_ci_test;'
   - psql -c "SELECT version();"
   - psql -c 'create database travis_ci_test;' -U postgres
-gemfile:
-  - gemfiles/3.2.gemfile
-  - gemfiles/4.2.gemfile
-  - gemfiles/5.0.gemfile
-  - gemfiles/5.1.gemfile
-  - gemfiles/5.2.gemfile
 script:
   - bundle exec rake test
 after_script:
