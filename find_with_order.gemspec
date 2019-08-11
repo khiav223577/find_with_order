@@ -26,11 +26,11 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  spec.metadata    = {
+  spec.metadata      = {
     'homepage_uri'      => 'https://github.com/khiav223577/find_with_order',
     'changelog_uri'     => 'https://github.com/khiav223577/find_with_order/blob/master/CHANGELOG.md',
     'source_code_uri'   => 'https://github.com/khiav223577/find_with_order',
-    'documentation_uri' => 'http://www.rubydoc.info/gems/find_with_order',
+    'documentation_uri' => 'https://www.rubydoc.info/gems/find_with_order',
     'bug_tracker_uri'   => 'https://github.com/khiav223577/find_with_order/issues',
   }
 
