@@ -10,6 +10,7 @@ env:
   - DB=mysql
   - DB=pg
 services:
+  - mysql
   - postgresql
 addons:
   postgresql: "9.4"
