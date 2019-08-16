@@ -21,7 +21,7 @@ class FindWithOrderTest < Minitest::Test
     test_order.call [3, 2, 1]
   end
 
-  def no_sql_injection
+  def test_no_sql_injection
     expected = User.where(id: [1, 2, 3])
     assert_equal expected, User.find_with_order([1, 2, 3, "LIMIT 2"])
   end
