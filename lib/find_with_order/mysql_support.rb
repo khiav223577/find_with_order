@@ -4,7 +4,7 @@ module FindWithOrder::MysqlSupport
   class << self
     def find_with_order(relation, ids)
       relation.where(id: ids)
-              .order("field(#{relation.table_name}.id, #{ids.join(',')})")
+              .order(sanitize_sql_for_order(["field(?, ?)", relation.table_name, ids]))
               .to_a
     end
 
@@ -18,8 +18,8 @@ module FindWithOrder::MysqlSupport
       else
         column = column.to_s
       end
-      return relation.order("field(#{sanitize(column)}, #{ids.map { |id| sanitize(id.inspect) }.join(',')})") if null_first
-      return relation.order("field(#{sanitize(column)}, #{ids.reverse.map { |id| sanitize(id.inspect) }.join(',')}) DESC")
+      return relation.order(sanitize_sql_for_order(["field(?, ?)", column, ids.map(&:inspect)])) if null_first
+      return relation.order(sanitize_sql_for_order(["field(?, ?)", column, ids.reverse.map(&:inspect)]))
     end
   end
 end
