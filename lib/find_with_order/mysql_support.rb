@@ -2,6 +2,7 @@
 require "active_record"
 
 module FindWithOrder::MysqlSupport
+  include ActiveRecord::Sanitization
   class << self
     def find_with_order(relation, ids)
       relation.where(id: ids)
@@ -22,7 +23,5 @@ module FindWithOrder::MysqlSupport
       return relation.order(sanitize_sql_for_order(["field(?, ?)", column, ids.map(&:inspect)])) if null_first
       return relation.order(sanitize_sql_for_order(["field(?, ?)", column, ids.reverse.map(&:inspect)]))
     end
-
-    delegate :sanitize_sql_for_order, to: :"ActiveRecord::Sanitization"
   end
 end
