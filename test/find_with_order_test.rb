@@ -21,6 +21,11 @@ class FindWithOrderTest < Minitest::Test
     test_order.call [3, 2, 1]
   end
 
+  def no_sql_injection
+    expected = User.where(id: [1, 2, 3])
+    assert_equal expected, User.find_with_order([1, 2, 3, "LIMIT 2"])
+  end
+
   def test_find_name_with_order
     test_order = proc{|order|
       expected = User.where(:name => order).to_a.sort_by{|user| order.index(user.name) }
