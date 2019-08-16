@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "active_record"
 
 module FindWithOrder::MysqlSupport
   class << self
