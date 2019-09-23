@@ -9,6 +9,9 @@
 
 Find records in the same order of input array.
 
+Support Rails 3.2, 4.2, 5.0, 5.1, 5.2, 6.0.
+Support MySQL, PostgreSQL.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -32,10 +35,10 @@ Or install it yourself as:
 ids = [3, 1, 5]
 
 User.find(ids).map(&:id)
-# => [1, 3, 5] 
+# => [1, 3, 5]
 
 User.find_with_order(ids).map(&:id)
-# => [3, 1, 5] 
+# => [3, 1, 5]
 ```
 
 ### Support ordering by other columns: `where_with_order`
