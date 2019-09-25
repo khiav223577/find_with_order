@@ -17,7 +17,7 @@ ActiveSupport::Dependencies.autoload_paths << File.expand_path('../models/', __F
 users = User.create([
   {:name => 'John', :email => 'john@example.com'},
   {:name => 'Pearl', :email => 'pearl@example.com'},
-  {:name => 'Kathenrie', :email => 'kathenrie@example.com'},
+  {:name => 'Doggy', :email => 'kathenrie@example.com'},
 ])
 
 Post.create([
@@ -26,7 +26,7 @@ Post.create([
   {:title => "John's post3", :user_id => users[0].id},
   {:title => "Pearl's post1", :user_id => users[1].id},
   {:title => "Pearl's post2", :user_id => users[1].id},
-  {:title => "Kathenrie's post1", :user_id => users[2].id},
+  {:title => "Doggy's post1", :user_id => users[2].id},
 ])
 
 if ENV['DB'] == 'pg'

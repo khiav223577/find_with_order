@@ -26,12 +26,12 @@ class FindWithOrderTest < Minitest::Test
       expected = User.where(:name => order).to_a.sort_by{|user| order.index(user.name) }
       assert_equal expected, User.where_with_order(:name, order)
     }
-    test_order.call %w(John Pearl Kathenrie)
-    test_order.call %w(John Kathenrie Pearl)
-    test_order.call %w(Pearl John Kathenrie)
-    test_order.call %w(Pearl Kathenrie John)
-    test_order.call %w(Kathenrie John Pearl)
-    test_order.call %w(Kathenrie Pearl John)
+    test_order.call %w(John Pearl Doggy)
+    test_order.call %w(John Doggy Pearl)
+    test_order.call %w(Pearl John Doggy)
+    test_order.call %w(Pearl Doggy John)
+    test_order.call %w(Doggy John Pearl)
+    test_order.call %w(Doggy Pearl John)
   end
 
   def test_none
