@@ -1,9 +1,9 @@
-require "simplecov"
-SimpleCov.start
+require 'simplecov'
+SimpleCov.start 'test_frameworks'
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'find_with_order'
 
+require 'find_with_order'
 require 'minitest/autorun'
 
 case ENV['DB']
