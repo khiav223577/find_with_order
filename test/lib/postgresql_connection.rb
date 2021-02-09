@@ -1,6 +1,10 @@
 ActiveRecord::Base.establish_connection(
-  "adapter"  => "postgresql",
-  "database" => "travis_ci_test",
+  'adapter'  => 'postgresql',
+  'database' => 'github_actions_test',
+  'username' => 'developer',
+  'password' => 'developer_password',
+  'host'     => 'localhost',
+  'port'     => 5432,
 )
 
 class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter

@@ -2,7 +2,7 @@
 # FindWithOrder
 
 [![Gem Version](https://img.shields.io/gem/v/find_with_order.svg?style=flat)](https://rubygems.org/gems/find_with_order)
-[![Build Status](https://travis-ci.org/khiav223577/find_with_order.svg?branch=master)](https://travis-ci.org/khiav223577/find_with_order)
+[![Build Status](https://github.com/khiav223577/find_with_order/workflows/Ruby/badge.svg)](https://github.com/khiav223577/find_with_order/actions)
 [![RubyGems](http://img.shields.io/gem/dt/find_with_order.svg?style=flat)](https://rubygems.org/gems/find_with_order)
 [![Code Climate](https://codeclimate.com/github/khiav223577/find_with_order/badges/gpa.svg)](https://codeclimate.com/github/khiav223577/find_with_order)
 [![Test Coverage](https://codeclimate.com/github/khiav223577/find_with_order/badges/coverage.svg)](https://codeclimate.com/github/khiav223577/find_with_order/coverage)
