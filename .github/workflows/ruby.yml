@@ -19,8 +19,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        db:
+          - mysql
+          - pg
         ruby:
-          - 2.2
+          # - 2.2 # skip Ruby 2.2 since mysql2 raises segmentation fault at 0x0000000000000000
+          # See: https://github.community/t/mysql2-segmentation-fault-at-0x0000000000000000/159283
           - 2.6
           - 2.7
         gemfile:
@@ -41,6 +45,38 @@ jobs:
             ruby: 2.2
     env:
       BUNDLE_GEMFILE: "gemfiles/${{ matrix.gemfile }}"
+      DB: "${{ matrix.db }}"
+
+    services:
+      mysql:
+        image: mysql:5.6
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_USER: developer
+          MYSQL_PASSWORD: developer_password
+          MYSQL_DATABASE: github_actions_test
+        ports:
+          - 3306:3306
+        # Set health checks to wait until mysql has started
+        options: >-
+          --health-cmd "mysqladmin ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+      postgres:
+        image: postgres:9.6
+        env:
+          POSTGRES_USER: developer
+          POSTGRES_PASSWORD: developer_password
+          POSTGRES_DB: github_actions_test
+        ports:
+          - 5432:5432
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
 
     steps:
     - name: Checkout
