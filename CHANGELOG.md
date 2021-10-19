@@ -1,5 +1,15 @@
 ## Change Log
 
+### [v1.3.1](https://github.com/khiav223577/find_with_order/compare/v1.3.0...v1.3.1) 2021/10/19
+- [#27](https://github.com/khiav223577/find_with_order/pull/27) Support Rails 6.1 (@khiav223577)
+- [#24](https://github.com/khiav223577/find_with_order/pull/24) Wrapping raw SQL in Arel.sql()  (@glasses618)
+- [#26](https://github.com/khiav223577/find_with_order/pull/26) Skip the step of publishing code coverage for the PR from forked repos (@khiav223577)
+- [#25](https://github.com/khiav223577/find_with_order/pull/25) Fix error: unknown type name ‘my_bool’; did you mean ‘bool’? (@khiav223577)
+- [#23](https://github.com/khiav223577/find_with_order/pull/23) Migrating from Travis CI to GitHub Actions (@khiav223577)
+- [#22](https://github.com/khiav223577/find_with_order/pull/22) Fix: test files should not be included in coverage (@khiav223577)
+- [#21](https://github.com/khiav223577/find_with_order/pull/21) Support Ruby 2.7 (@khiav223577)
+- [#20](https://github.com/khiav223577/find_with_order/pull/20) Support Rails 6.0 (@khiav223577)
+
 ### [v1.3.0](https://github.com/khiav223577/find_with_order/compare/v1.2.1...v1.3.0) 2019/05/12
 - [#18](https://github.com/khiav223577/find_with_order/pull/18) Support psql uuid type (@khiav223577)
 - [#17](https://github.com/khiav223577/find_with_order/pull/17) Remove deprecated codeclimate-test-reporter gem and update travis config (@khiav223577)
@@ -29,4 +39,6 @@
 
 ### [v0.0.2](https://github.com/khiav223577/find_with_order/compare/v0.0.1...v0.0.2) 2017/02/22
 - [#2](https://github.com/khiav223577/find_with_order/pull/2) Fix Rails 3 doesn't have #none method (@khiav223577)
+
+### v0.0.1 2017/02/22
 - [#1](https://github.com/khiav223577/find_with_order/pull/1) add find_with_order (@khiav223577)
