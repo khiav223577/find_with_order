@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "find_with_order"
   spec.version       = FindWithOrder::VERSION
   spec.authors       = ["khiav reoy"]
-  spec.email         = ["mrtmrt15xn@yahoo.com.tw"]
+  spec.email         = ["khiav223577@gmail.com"]
 
   spec.summary       = %q{A simple way to find records in the same order of input array.}
   spec.description   = %q{A simple way to find records in the same order of input array. Has better performance than manually sorting. Supports Rails 3+.}
